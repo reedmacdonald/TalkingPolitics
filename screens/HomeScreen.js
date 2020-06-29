@@ -9,7 +9,7 @@ function HomeScreen(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.bigText}>Talking Politics</Text>
-      <Text style={styles.smallerText}>Politics-Themed Drinking Game1</Text>
+      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("GameStart")}
         style={styles.button}

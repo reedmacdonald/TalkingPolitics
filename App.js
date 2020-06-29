@@ -24,8 +24,18 @@ export const GameContext = React.createContext();
 
 export default function App() {
   const [gameText, setGameText] = React.useState("Hello World");
+  const [gameTopic, setGameTopic] = React.useState("All");
+  const [gamePlayers, setGamePlayers] = React.useState(2);
+  const setTheTopic = (data) => {
+    setGameTopic(data);
+  };
+  const setThePlayers = (data) => {
+    setGamePlayers(data);
+  };
   return (
-    <GameContext.Provider value={{ gameText }}>
+    <GameContext.Provider
+      value={{ gameText, gameTopic, gamePlayers, setThePlayers, setTheTopic }}
+    >
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />

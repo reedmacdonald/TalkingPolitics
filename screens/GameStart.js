@@ -1,10 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Picker } from "react-native";
+import { GameContext } from "../App";
 
 function GameStart(props) {
   const [selectPlayers, setSelectPlayers] = React.useState(2);
   const [selectCategory, setSelectCategory] = React.useState("All");
+  const gameContext = React.useContext(GameContext);
   return (
     <View style={styles.container}>
       <Text style={styles.bigText}>Players</Text>
@@ -12,7 +14,10 @@ function GameStart(props) {
         <Picker
           selectedValue={selectPlayers}
           style={{ width: 150 }}
-          onValueChange={(itemValue, itemIndex) => setSelectPlayers(itemValue)}
+          onValueChange={(itemValue, itemIndex) => {
+            gameContext.setThePlayers(itemValue);
+            setSelectPlayers(itemValue);
+          }}
         >
           <Picker.Item label="2" value="2" />
           <Picker.Item label="3" value="3" />
@@ -28,7 +33,10 @@ function GameStart(props) {
         <Picker
           selectedValue={selectCategory}
           style={{ width: 150 }}
-          onValueChange={(itemValue, itemIndex) => setSelectCategory(itemValue)}
+          onValueChange={(itemValue, itemIndex) => {
+            gameContext.setTheTopic(itemValue);
+            setSelectCategory(itemValue);
+          }}
         >
           <Picker.Item label="All" value="All" />
           <Picker.Item label="International" value="International" />
@@ -41,6 +49,10 @@ function GameStart(props) {
         style={styles.button}
       >
         <Text style={styles.buttonFont}>Start</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonFont}>Topic:{gameContext.gameTopic}</Text>
+        <Text style={styles.buttonFont}>Players:{gameContext.gamePlayers}</Text>
       </TouchableOpacity>
     </View>
   );
