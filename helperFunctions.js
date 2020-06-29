@@ -24,3 +24,6 @@ export const getPrompts2 = () => {
 export const getCriteria = (criteria) => {
   return db.collection("criteria").get();
 };
+export const getCertainPrompts = (title) => {
+  return db.collection("prompts").where("Topic", "==", title).get();
+};

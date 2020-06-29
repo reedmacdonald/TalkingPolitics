@@ -8,14 +8,10 @@ function Criteria(props) {
   const gameContext = React.useContext(GameContext);
   const [question, setQuestion] = React.useState("Loading Prompt");
   let getThings = async () => {
-    let results = await getCriteria();
-    let tired = [];
-    results.forEach((doc) => {
-      tired.push(doc.data());
-    });
+    let newCard = gameContext.card.WhoDrinks;
 
-    let randNum = Math.floor(Math.random() * tired.length);
-    setQuestion(tired[randNum].Criteria); // returns a random integer from 0 to 10
+    let randNum = Math.floor(Math.random() * newCard.length);
+    setQuestion(newCard[randNum]); // returns a random integer from 0 to 10
   };
   React.useEffect(() => {
     getThings();

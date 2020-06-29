@@ -26,15 +26,40 @@ export default function App() {
   const [gameText, setGameText] = React.useState("Hello World");
   const [gameTopic, setGameTopic] = React.useState("All");
   const [gamePlayers, setGamePlayers] = React.useState(2);
+  const [card, setCard] = React.useState({ WhoDrinks: ["hmm", "idk"] });
+  const [deckLength, setDeckLength] = React.useState(10);
+  const [cardStack, setCardStack] = React.useState([]);
   const setTheTopic = (data) => {
     setGameTopic(data);
   };
   const setThePlayers = (data) => {
     setGamePlayers(data);
   };
+  const setTheCard = (data) => {
+    setCard(data);
+  };
+  const setTheDeckLength = (data) => {
+    setDeckLength(data);
+  };
+  const addACard = (data) => {
+    let newStack = cardStack.push(data);
+    setCardStack(newStack);
+  };
   return (
     <GameContext.Provider
-      value={{ gameText, gameTopic, gamePlayers, setThePlayers, setTheTopic }}
+      value={{
+        gameText,
+        gameTopic,
+        gamePlayers,
+        setThePlayers,
+        setTheTopic,
+        card,
+        setTheCard,
+        deckLength,
+        setTheDeckLength,
+        cardStack,
+        addACard,
+      }}
     >
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
