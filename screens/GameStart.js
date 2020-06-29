@@ -1,13 +1,45 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Picker } from "react-native";
 
-function GameStart() {
+function GameStart(props) {
+  const [selectPlayers, setSelectPlayers] = React.useState(2);
+  const [selectCategory, setSelectCategory] = React.useState("All");
   return (
     <View style={styles.container}>
-      <Text style={styles.bigText}>Intro Screen</Text>
-      <Text style={styles.smallerText}>This is the intro Screen</Text>
-      <TouchableOpacity style={styles.button}>
+      <Text style={styles.bigText}>Players</Text>
+      <View style={styles.relative}>
+        <Picker
+          selectedValue={selectPlayers}
+          style={{ width: 150 }}
+          onValueChange={(itemValue, itemIndex) => setSelectPlayers(itemValue)}
+        >
+          <Picker.Item label="2" value="2" />
+          <Picker.Item label="3" value="3" />
+          <Picker.Item label="4" value="4" />
+          <Picker.Item label="5" value="5" />
+          <Picker.Item label="6" value="6" />
+          <Picker.Item label="7" value="7" />
+          <Picker.Item label="8" value="8" />
+        </Picker>
+      </View>
+      <Text style={styles.bigText}>Category</Text>
+      <View style={styles.relative}>
+        <Picker
+          selectedValue={selectCategory}
+          style={{ width: 150 }}
+          onValueChange={(itemValue, itemIndex) => setSelectCategory(itemValue)}
+        >
+          <Picker.Item label="All" value="All" />
+          <Picker.Item label="International" value="International" />
+          <Picker.Item label="Philosophy" value="Philosophy" />
+          <Picker.Item label="Small Ball" value="Small Ball" />
+        </Picker>
+      </View>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("Instructions")}
+        style={styles.button}
+      >
         <Text style={styles.buttonFont}>Start</Text>
       </TouchableOpacity>
     </View>
@@ -21,6 +53,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  relative: { position: "relative" },
   bigText: {
     fontSize: 45,
   },
@@ -31,6 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     padding: 15,
     marginTop: 10,
+    position: "relative",
   },
   buttonFont: {
     fontWeight: "bold",

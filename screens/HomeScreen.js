@@ -2,20 +2,20 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { GameContext } from "../App";
+import { getPrompts } from "../helperFunctions";
 
 function HomeScreen(props) {
   const gameContext = React.useContext(GameContext);
   return (
     <View style={styles.container}>
       <Text style={styles.bigText}>Talking Politics</Text>
-      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
+      <Text style={styles.smallerText}>Politics-Themed Drinking Game1</Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("GameStart")}
         style={styles.button}
       >
         <Text style={styles.buttonFont}>Start</Text>
       </TouchableOpacity>
-      <Text>{gameContext.gameText}</Text>
     </View>
   );
 }

@@ -5,17 +5,34 @@ import { GameContext } from "../App";
 
 function Timer(props) {
   const gameContext = React.useContext(GameContext);
+  const [time, setTime] = React.useState(90);
+  const [otherNumber, setOtherNumber] = React.useState(10);
+  const [isPaused, setIsPaused] = React.useState(false);
+  React.useEffect(() => {
+    startTime();
+  }, []);
+  const startTime = () => {
+    const timeNumber = setInterval(() => {
+      setTime(time--);
+    }, 1000);
+    setOtherNumber(timeNumber);
+  };
+  const stopTime = () => {
+    clearInterval(otherNumber);
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.bigText}>Talking Politics</Text>
-      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
+      <TouchableOpacity onPress={setTime(time + 15)} style={styles.button}>
+        <Text style={styles.buttonFont}>Add Time</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.smallerText}>{time}</Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("GameStart")}
         style={styles.button}
       >
-        <Text style={styles.buttonFont}>Start</Text>
+        <Text style={styles.buttonFont}>Pause</Text>
       </TouchableOpacity>
-      <Text>{gameContext.gameText}</Text>
     </View>
   );
 }

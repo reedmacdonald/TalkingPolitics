@@ -9,6 +9,15 @@ import Instructions from "./screens/Instructions";
 import Positions from "./screens/Positions";
 import Timer from "./screens/Timer";
 import Criteria from "./screens/Criteria";
+import { decode, encode } from "base-64";
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+if (!global.atob) {
+  global.atob = decode;
+}
 
 const Stack = createStackNavigator();
 export const GameContext = React.createContext();

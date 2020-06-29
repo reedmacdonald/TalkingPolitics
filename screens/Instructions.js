@@ -7,15 +7,23 @@ function Instructions(props) {
   const gameContext = React.useContext(GameContext);
   return (
     <View style={styles.container}>
-      <Text style={styles.bigText}>Talking Politics</Text>
-      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
+      <Text style={styles.bigText}>Instructions</Text>
+      <Text style={styles.smallerText}>
+        Doggo ipsum many pats smol. Long bois very hand that feed shibe boof
+        aqua doggo you are doin me a concern the neighborhood pupper, long water
+        shoob wrinkler shooberino. Blop you are doing me a frighten lotsa pats
+        yapper many pats big ol thicc most angery pupper I have ever seen very
+        jealous pupper bork, heckin good boys big ol pupper bork floofs doggo
+        woofer bork. Pupper mlem very jealous pupper yapper, length boy most
+        angery pupper I have ever seen. Bork super chub such treat yapper
+        puggorino wow such tempt,
+      </Text>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("GameStart")}
+        onPress={() => props.navigation.navigate("Positions")}
         style={styles.button}
       >
         <Text style={styles.buttonFont}>Start</Text>
       </TouchableOpacity>
-      <Text>{gameContext.gameText}</Text>
     </View>
   );
 }

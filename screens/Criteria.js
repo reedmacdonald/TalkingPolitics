@@ -8,7 +8,7 @@ function Criteria(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.bigText}>Talking Politics</Text>
-      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
+      <Text style={styles.smallerText}>Criteria</Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("GameStart")}
         style={styles.button}

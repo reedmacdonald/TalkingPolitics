@@ -2,20 +2,36 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { GameContext } from "../App";
+import { getPrompts, getPrompts2 } from "../helperFunctions";
 
 function Positions(props) {
   const gameContext = React.useContext(GameContext);
+  const [question, setQuestion] = React.useState("Loading Prompt");
+  let getThings = async () => {
+    let results = await getPrompts2();
+    let tired = [];
+    results.forEach((doc) => {
+      tired.push(doc.data());
+    });
+
+    let randNum = Math.floor(Math.random() * tired.length);
+    setQuestion(tired[randNum].Prompt); // returns a random integer from 0 to 10
+  };
+  React.useEffect(() => {
+    getThings();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.bigText}>Talking Politics</Text>
+      <Text style={styles.bigText}>Positions</Text>
       <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
+      <Text style={styles.smallerText}>{question}</Text>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("GameStart")}
+        onPress={() => props.navigation.navigate("Timer")}
         style={styles.button}
       >
         <Text style={styles.buttonFont}>Start</Text>
       </TouchableOpacity>
-      <Text>{gameContext.gameText}</Text>
     </View>
   );
 }
