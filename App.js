@@ -32,7 +32,13 @@ export default function App() {
           <Stack.Screen name="GameStart" component={GameStart} />
           <Stack.Screen name="Instructions" component={Instructions} />
           <Stack.Screen name="Positions" component={Positions} />
-          <Stack.Screen name="Timer" component={Timer} />
+          <Stack.Screen
+            name="Timer"
+            component={Timer}
+            options={{
+              headerLeft: null,
+            }}
+          />
           <Stack.Screen name="Criteria" component={Criteria} />
         </Stack.Navigator>
       </NavigationContainer>

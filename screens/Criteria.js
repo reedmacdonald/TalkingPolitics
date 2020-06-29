@@ -2,20 +2,42 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { GameContext } from "../App";
+import { getPrompts, getPrompts2, getCriteria } from "../helperFunctions";
 
 function Criteria(props) {
   const gameContext = React.useContext(GameContext);
+  const [question, setQuestion] = React.useState("Loading Prompt");
+  let getThings = async () => {
+    let results = await getCriteria();
+    let tired = [];
+    results.forEach((doc) => {
+      tired.push(doc.data());
+    });
+
+    let randNum = Math.floor(Math.random() * tired.length);
+    setQuestion(tired[randNum].Criteria); // returns a random integer from 0 to 10
+  };
+  React.useEffect(() => {
+    getThings();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.bigText}>Talking Politics</Text>
-      <Text style={styles.smallerText}>Criteria</Text>
+      <Text style={styles.bigText}>Criteria</Text>
+      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
+      <Text style={styles.smallerText}>{question}</Text>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("GameStart")}
+        onPress={() => props.navigation.navigate("Timer")}
         style={styles.button}
       >
-        <Text style={styles.buttonFont}>Start</Text>
+        <Text style={styles.buttonFont}>Continue</Text>
       </TouchableOpacity>
-      <Text>{gameContext.gameText}</Text>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("Home")}
+        style={styles.button}
+      >
+        <Text style={styles.buttonFont}>End</Text>
+      </TouchableOpacity>
     </View>
   );
 }
