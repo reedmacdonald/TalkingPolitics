@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { GameContext } from "../App";
 import { getPrompts, getPrompts2, getCriteria } from "../helperFunctions";
 
@@ -23,7 +23,10 @@ function Criteria(props) {
       <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
       <Text style={styles.smallerText}>{question}</Text>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate("Timer")}
+        onPress={() => {
+          props.navigation.navigate("Positions");
+          gameContext.getNewCard();
+        }}
         style={styles.button}
       >
         <Text style={styles.buttonFont}>Continue</Text>

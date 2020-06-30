@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { GameContext } from "../App";
 import { getPrompts, getPrompts2, getCertainPrompts } from "../helperFunctions";
 
@@ -11,7 +11,6 @@ function Positions(props) {
   const [playerTwo, setPlayerTwo] = React.useState("LoadingPlayerTwo");
   const [premise, setPremise] = React.useState("LoadingPremise");
   React.useEffect(() => {
-    console.log(gameContext.gameTopic, "<---gameContext.gameTopic");
     getThings();
   }, []);
   let getThings = async () => {
@@ -28,7 +27,6 @@ function Positions(props) {
 
     let randNum = Math.floor(Math.random() * tired.length);
     gameContext.setTheDeckLength(tired.length);
-    //setQuestion(tired[randNum].Prompt); // returns a random integer from 0 to 10
     setAdditional(tired[randNum].Additional);
     setPlayerOne(tired[randNum].PlayerOne);
     setPlayerTwo(tired[randNum].PlayerTwo);
@@ -37,8 +35,16 @@ function Positions(props) {
     gameContext.addACard(tired[randNum]);
   };
   React.useEffect(() => {
+    console.log("getting things");
     getThings();
   }, []);
+  React.useEffect(() => {
+    console.log(gameContext.triggerNewCard, "<---triggerNewCard");
+    if (gameContext.triggerNewCard !== 1) {
+      console.log("triggering");
+      getThings();
+    }
+  }, [gameContext.triggerNewCard]);
 
   return (
     <View style={styles.container}>
@@ -47,12 +53,11 @@ function Positions(props) {
       <Text style={styles.smallerText}>Player One: {playerOne}</Text>
       <Text style={styles.smallerText}>Player Two: {playerTwo}</Text>
       <Text style={styles.smallerText}>Additional: {additional}</Text>
-      <TouchableOpacity
+      <Button
         onPress={() => props.navigation.navigate("Timer")}
         style={styles.button}
-      >
-        <Text style={styles.buttonFont}>Start</Text>
-      </TouchableOpacity>
+        title="Start"
+      />
     </View>
   );
 }

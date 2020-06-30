@@ -29,6 +29,11 @@ export default function App() {
   const [card, setCard] = React.useState({ WhoDrinks: ["hmm", "idk"] });
   const [deckLength, setDeckLength] = React.useState(10);
   const [cardStack, setCardStack] = React.useState([]);
+  const [triggerNewCard, setTriggerNewCard] = React.useState(1);
+
+  const getNewCard = () => {
+    setTriggerNewCard(triggerNewCard + 1);
+  };
   const setTheTopic = (data) => {
     setGameTopic(data);
   };
@@ -45,6 +50,9 @@ export default function App() {
     let newStack = cardStack.push(data);
     setCardStack(newStack);
   };
+  React.useState(() => {
+    console.log(cardStack, "<---cardStack");
+  }, [cardStack]);
   return (
     <GameContext.Provider
       value={{
@@ -59,6 +67,8 @@ export default function App() {
         setTheDeckLength,
         cardStack,
         addACard,
+        triggerNewCard,
+        getNewCard,
       }}
     >
       <NavigationContainer>
