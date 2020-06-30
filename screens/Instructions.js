@@ -9,14 +9,15 @@ function Instructions(props) {
     <View style={styles.container}>
       <Text style={styles.bigText}>Instructions</Text>
       <Text style={styles.smallerText}>
-        Doggo ipsum many pats smol. Long bois very hand that feed shibe boof
-        aqua doggo you are doin me a concern the neighborhood pupper, long water
-        shoob wrinkler shooberino. Blop you are doing me a frighten lotsa pats
-        yapper many pats big ol thicc most angery pupper I have ever seen very
-        jealous pupper bork, heckin good boys big ol pupper bork floofs doggo
-        woofer bork. Pupper mlem very jealous pupper yapper, length boy most
-        angery pupper I have ever seen. Bork super chub such treat yapper
-        puggorino wow such tempt,
+        Choose a topic and a number of players and let one person begin as a
+        moderator. The moderator will read the debate premise, the positions
+        each player will have to take, and any extra criteria for the debate.
+        When he clicks start, debate participants will have 90 seconds to
+        debate, but the moderator can pause the debate or add more time. When
+        the time runs out, the moderator will read who has to drink. If this is
+        arbitrary (e.g. "Person who won the debate") it is then up the moderator
+        to decide. You can then end the game or switch moderators and continue
+        with a new topic.
       </Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("Positions")}
@@ -40,6 +41,8 @@ const styles = StyleSheet.create({
   },
   smallerText: {
     fontSize: 25,
+    textAlign: "center",
+    paddingHorizontal: 5,
   },
   button: {
     backgroundColor: "red",

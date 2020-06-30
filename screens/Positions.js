@@ -49,10 +49,14 @@ function Positions(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.bigText}>Positions</Text>
-      <Text style={styles.smallerText}>Premise: {premise}</Text>
-      <Text style={styles.smallerText}>Player One: {playerOne}</Text>
-      <Text style={styles.smallerText}>Player Two: {playerTwo}</Text>
-      <Text style={styles.smallerText}>Additional: {additional}</Text>
+      <Text style={styles.smallerText}>Premise: </Text>
+      <Text>{premise}</Text>
+      <Text style={styles.smallerText}>Player One: </Text>
+      <Text>{playerOne}</Text>
+      <Text style={styles.smallerText}>Player Two: </Text>
+      <Text>{playerTwo}</Text>
+      <Text style={styles.smallerText}>Additional: </Text>
+      <Text>{additional}</Text>
       <Button
         onPress={() => props.navigation.navigate("Timer")}
         style={styles.button}

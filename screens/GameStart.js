@@ -39,8 +39,9 @@ function GameStart(props) {
           }}
         >
           <Picker.Item label="All" value="All" />
+          <Picker.Item label="USA" value="USA" />
           <Picker.Item label="International" value="International" />
-          <Picker.Item label="Philosophy" value="Philosophy" />
+          <Picker.Item label="Political Theory" value="Political Theory" />
           <Picker.Item label="Small Ball" value="Small Ball" />
         </Picker>
       </View>
@@ -49,10 +50,6 @@ function GameStart(props) {
         style={styles.button}
       >
         <Text style={styles.buttonFont}>Start</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonFont}>Topic:{gameContext.gameTopic}</Text>
-        <Text style={styles.buttonFont}>Players:{gameContext.gamePlayers}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -71,6 +68,7 @@ const styles = StyleSheet.create({
   },
   smallerText: {
     fontSize: 25,
+    textAlign: "center",
   },
   button: {
     backgroundColor: "red",

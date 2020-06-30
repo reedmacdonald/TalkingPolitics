@@ -20,7 +20,6 @@ function Criteria(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.bigText}>Criteria</Text>
-      <Text style={styles.smallerText}>Politics-Themed Drinking Game</Text>
       <Text style={styles.smallerText}>{question}</Text>
       <TouchableOpacity
         onPress={() => {
