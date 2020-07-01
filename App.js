@@ -84,7 +84,13 @@ export default function App() {
               headerLeft: null,
             }}
           />
-          <Stack.Screen name="Criteria" component={Criteria} />
+          <Stack.Screen
+            name="Criteria"
+            component={Criteria}
+            options={{
+              headerLeft: null,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </GameContext.Provider>
