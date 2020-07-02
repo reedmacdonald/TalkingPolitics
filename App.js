@@ -47,7 +47,8 @@ export default function App() {
     setDeckLength(data);
   };
   const addACard = (data) => {
-    let newStack = cardStack.push(data);
+    //let newStack = cardStack.push(data);
+    let newStack = [];
     setCardStack(newStack);
   };
   React.useState(() => {

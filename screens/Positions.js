@@ -1,6 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Animated,
+  ActivityIndicator,
+  SafeAreaView,
+} from "react-native";
 import { GameContext } from "../App";
 import { getPrompts, getPrompts2, getCertainPrompts } from "../helperFunctions";
 
@@ -45,34 +54,91 @@ function Positions(props) {
       getThings();
     }
   }, [gameContext.triggerNewCard]);
+  const fadeAnim = React.useRef(new Animated.Value(1)).current;
+
+  const fadeIn = () => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    // Will change fadeAnim value to 0 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 2000,
+    }).start();
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.bigText}>Positions</Text>
-      <Text style={styles.smallerText}>Premise: </Text>
-      <Text>{premise}</Text>
-      <Text style={styles.smallerText}>Player One: </Text>
-      <Text>{playerOne}</Text>
-      <Text style={styles.smallerText}>Player Two: </Text>
-      <Text>{playerTwo}</Text>
-      <Text style={styles.smallerText}>Additional: </Text>
-      <Text>{additional}</Text>
+    <SafeAreaView style={styles.container}>
+      {additional == "Loading Additional" ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : (
+        <>
+          <Animated.View
+            style={[
+              {
+                opacity: fadeAnim,
+                alignItems: "center",
+                justifyContent: "center", // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.bigText,
+                { backgroundColor: "blue", marginTop: 300 },
+              ]}
+            >
+              Positions
+            </Text>
+            <Text style={[styles.smallerText, { backgroundColor: "red" }]}>
+              Premise:{" "}
+            </Text>
+            <Text>{premise}</Text>
+            <Text style={styles.smallerText}>Player One: </Text>
+            <Text>{playerOne}</Text>
+            <Text style={styles.smallerText}>Player Two: </Text>
+            <Text>{playerTwo}</Text>
+            <Text style={styles.smallerText}>Additional: </Text>
+            <Text>{additional}</Text>
+          </Animated.View>
+          <Button
+            onPress={() => props.navigation.navigate("Timer")}
+            style={styles.button}
+            title="Start"
+          />
+        </>
+      )}
       <Button
-        onPress={() => props.navigation.navigate("Timer")}
+        onPress={async () => {
+          fadeOut();
+
+          setTimeout(() => {
+            getThings();
+            fadeIn();
+          }, 2000);
+        }}
         style={styles.button}
-        title="Start"
+        title="New Topic"
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 10,
     backgroundColor: "#fff",
     alignItems: "center",
+
     justifyContent: "center",
   },
+  animatedContainer: { backgroundColor: "red" },
+
   bigText: {
     fontSize: 45,
   },
