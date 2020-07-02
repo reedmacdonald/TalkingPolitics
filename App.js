@@ -47,7 +47,6 @@ export default function App() {
     setDeckLength(data);
   };
   const addACard = (data) => {
-    //let newStack = cardStack.push(data);
     let newStack = [];
     setCardStack(newStack);
   };
@@ -73,7 +72,12 @@ export default function App() {
       }}
     >
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="Home"
+        >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="GameStart" component={GameStart} />
           <Stack.Screen name="Instructions" component={Instructions} />
