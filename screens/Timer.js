@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Animated,
+} from "react-native";
 import { GameContext } from "../App";
 import BlueButton from "./buttons/BlueButton";
 import RedButton from "./buttons/RedButton";
@@ -10,6 +17,8 @@ function Timer(props) {
   const [otherNumber, setOtherNumber] = React.useState(10);
   const [isPaused, setIsPaused] = React.useState(false);
   const [started, setStarted] = React.useState(false);
+  const [bouncer, setBouncer] = React.useState(0);
+  const [whoDrinks, setWhoDrinks] = React.useState("");
   React.useEffect(() => {});
 
   const startTime = (x) => {
@@ -28,11 +37,30 @@ function Timer(props) {
       props.navigation.navigate("Criteria");
     } else {
       let sumthin = timeOne - 1;
+      let personDrinks = [
+        "Player One Drinks",
+        "Player Two Drinks",
+        "Everyone Drinks",
+      ];
+      let happyFourth = Math.floor(Math.random() * 11);
+      if (happyFourth == 3) {
+        if (!whoDrinks) {
+          let anotherOne = Math.floor(Math.random() * 3);
+          setWhoDrinks(personDrinks[anotherOne]);
+          setTimeout(() => {
+            if (2 > 1) {
+              setWhoDrinks("");
+            }
+          }, 3000);
+        }
+      }
+
       if (2 > 1) {
         startTime(sumthin);
       }
     }
   }, [timeOne]);
+
   return (
     <View style={styles.container}>
       <BlueButton
@@ -45,6 +73,19 @@ function Timer(props) {
         styles={styles.marginBotton}
       />
       <Text style={styles.timerText}>{timeOne}</Text>
+      <Animated.Text
+        style={[
+          {
+            color: "#834143",
+            top: 200,
+            position: "absolute",
+            fontFamily: "AmericanTypewriter-Bold",
+            fontSize: 30,
+          },
+        ]}
+      >
+        {whoDrinks}
+      </Animated.Text>
 
       <RedButton
         onPress={
