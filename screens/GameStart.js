@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Picker } from "react-native";
 import { GameContext } from "../App";
+import BlueButton from "./buttons/BlueButton";
+import RedButton from "./buttons/RedButton";
 
 function GameStart(props) {
   const [selectPlayers, setSelectPlayers] = React.useState(2);
@@ -45,12 +47,11 @@ function GameStart(props) {
           <Picker.Item label="Small Ball" value="Small Ball" />
         </Picker>
       </View>
-      <TouchableOpacity
+
+      <BlueButton
         onPress={() => props.navigation.navigate("Instructions")}
-        style={styles.button}
-      >
-        <Text style={styles.buttonFont}>Start</Text>
-      </TouchableOpacity>
+        text={"Start"}
+      />
     </View>
   );
 }
@@ -58,23 +59,29 @@ function GameStart(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAEBD7",
     alignItems: "center",
     justifyContent: "center",
   },
   relative: { position: "relative" },
   bigText: {
     fontSize: 45,
+    textAlign: "center",
+    paddingHorizontal: 10,
+    fontFamily: "American Typewriter",
   },
   smallerText: {
     fontSize: 25,
     textAlign: "center",
+    fontFamily: "American Typewriter",
+    paddingHorizontal: 10,
   },
   button: {
     backgroundColor: "red",
     padding: 15,
     marginTop: 10,
     position: "relative",
+    borderRadius: 20,
   },
   buttonFont: {
     fontWeight: "bold",

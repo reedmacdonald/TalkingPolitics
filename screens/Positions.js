@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { GameContext } from "../App";
 import { getPrompts, getPrompts2, getCertainPrompts } from "../helperFunctions";
+import BlueButton from "./buttons/BlueButton";
+import RedButton from "./buttons/RedButton";
 
 function Positions(props) {
   const gameContext = React.useContext(GameContext);
@@ -87,43 +89,41 @@ function Positions(props) {
               },
             ]}
           >
-            <Text
-              style={[
-                styles.bigText,
-                { backgroundColor: "blue", marginTop: 300 },
-              ]}
-            >
-              Positions
-            </Text>
-            <Text style={[styles.smallerText, { backgroundColor: "red" }]}>
-              Premise:{" "}
-            </Text>
-            <Text>{premise}</Text>
-            <Text style={styles.smallerText}>Player One: </Text>
-            <Text>{playerOne}</Text>
-            <Text style={styles.smallerText}>Player Two: </Text>
-            <Text>{playerTwo}</Text>
-            <Text style={styles.smallerText}>Additional: </Text>
-            <Text>{additional}</Text>
+            <Text style={[styles.bigText, {}]}>Positions</Text>
+            <View style={styles.margins}>
+              <Text style={[styles.smallerText, {}]}>Premise: </Text>
+              <Text style={[styles.lastText, {}]}>{premise}</Text>
+            </View>
+            <View style={styles.margins}>
+              <Text style={styles.smallerText}>Player One: </Text>
+              <Text style={[styles.lastText, {}]}>{playerOne}</Text>
+            </View>
+            <View style={styles.margins}>
+              <Text style={styles.smallerText}>Player Two: </Text>
+              <Text style={[styles.lastText, {}]}>{playerTwo}</Text>
+            </View>
+            <View style={styles.margins}>
+              <Text style={styles.smallerText}>Additional: </Text>
+              <Text style={[styles.lastText, {}]}>{additional}</Text>
+            </View>
           </Animated.View>
-          <Button
+
+          <RedButton
             onPress={() => props.navigation.navigate("Timer")}
-            style={styles.button}
-            title="Start"
+            text={"Start"}
           />
         </>
       )}
-      <Button
+      <BlueButton
         onPress={async () => {
           fadeOut();
 
-          setTimeout(() => {
-            getThings();
+          setTimeout(async () => {
+            await getThings();
             fadeIn();
           }, 2000);
         }}
-        style={styles.button}
-        title="New Topic"
+        text="New Topic"
       />
     </SafeAreaView>
   );
@@ -131,24 +131,40 @@ function Positions(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 10,
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-
+    backgroundColor: "#FAEBD7",
     justifyContent: "center",
   },
   animatedContainer: { backgroundColor: "red" },
-
+  margins: {
+    marginTop: 8,
+    marginBottom: 8,
+  },
   bigText: {
     fontSize: 45,
+    textAlign: "center",
+    paddingHorizontal: 10,
+    fontFamily: "American Typewriter",
   },
   smallerText: {
     fontSize: 25,
+    textAlign: "center",
+    paddingHorizontal: 10,
+    fontFamily: "American Typewriter",
   },
+  lastText: {
+    textAlign: "center",
+    paddingHorizontal: 10,
+    fontFamily: "American Typewriter",
+  },
+
   button: {
     backgroundColor: "red",
     padding: 15,
     marginTop: 10,
+    borderRadius: 20,
   },
   buttonFont: {
     fontWeight: "bold",

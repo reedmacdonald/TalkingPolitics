@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { GameContext } from "../App";
+import BlueButton from "./buttons/BlueButton";
+import RedButton from "./buttons/RedButton";
 
 function Timer(props) {
   const [timeOne, setTimeOne] = React.useState(90);
@@ -33,19 +35,18 @@ function Timer(props) {
   }, [timeOne]);
   return (
     <View style={styles.container}>
-      <TouchableOpacity
+      <BlueButton
         onPress={() => {
           clearTimeout(otherNumber);
           setIsPaused(false);
           setTimeOne(timeOne + 15);
         }}
-        style={styles.button}
-      >
-        <Text style={styles.buttonFont}>Add Time</Text>
-      </TouchableOpacity>
+        text={"Add Time"}
+        styles={styles.marginBotton}
+      />
+      <Text style={styles.timerText}>{timeOne}</Text>
 
-      <Text style={styles.smallerText}>{timeOne}</Text>
-      <TouchableOpacity
+      <RedButton
         onPress={
           isPaused
             ? () => {
@@ -57,31 +58,39 @@ function Timer(props) {
                 setIsPaused(!isPaused);
               }
         }
-        style={styles.button}
-      >
-        <Text style={styles.buttonFont}>{isPaused ? "Start" : "Pause"}</Text>
-      </TouchableOpacity>
+        text={isPaused ? "Start" : "Pause"}
+        styles={styles.marginTop}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  marginTop: {
+    marginTop: 30,
+  },
+  marginBotton: {
+    marginBottom: 30,
+  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAEBD7",
     alignItems: "center",
     justifyContent: "center",
   },
-  bigText: {
+
+  timerText: {
     fontSize: 45,
-  },
-  smallerText: {
-    fontSize: 25,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 2,
+    fontFamily: "American Typewriter",
   },
   button: {
     backgroundColor: "red",
     padding: 15,
     marginTop: 10,
+    borderRadius: 20,
   },
   buttonFont: {
     fontWeight: "bold",

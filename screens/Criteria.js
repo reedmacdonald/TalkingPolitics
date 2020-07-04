@@ -3,6 +3,8 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { GameContext } from "../App";
 import { getPrompts, getPrompts2, getCriteria } from "../helperFunctions";
+import BlueButton from "./buttons/BlueButton";
+import RedButton from "./buttons/RedButton";
 
 function Criteria(props) {
   const gameContext = React.useContext(GameContext);
@@ -21,21 +23,19 @@ function Criteria(props) {
     <View style={styles.container}>
       <Text style={styles.bigText}>Criteria</Text>
       <Text style={styles.smallerText}>{question}</Text>
-      <TouchableOpacity
+
+      <RedButton
         onPress={() => {
           props.navigation.navigate("Positions");
           gameContext.getNewCard();
         }}
-        style={styles.button}
-      >
-        <Text style={styles.buttonFont}>Continue</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
+        text={"Continue"}
+      />
+
+      <BlueButton
         onPress={() => props.navigation.navigate("Home")}
-        style={styles.button}
-      >
-        <Text style={styles.buttonFont}>End</Text>
-      </TouchableOpacity>
+        text={"End Game"}
+      />
     </View>
   );
 }
@@ -43,23 +43,47 @@ function Criteria(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAEBD7",
     alignItems: "center",
     justifyContent: "center",
   },
   bigText: {
     fontSize: 45,
+    textAlign: "center",
+    paddingHorizontal: 10,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 2,
+    fontFamily: "American Typewriter",
   },
   smallerText: {
     fontSize: 25,
+    textAlign: "center",
+    paddingHorizontal: 10,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 2,
+    fontFamily: "American Typewriter",
   },
   button: {
-    backgroundColor: "red",
+    backgroundColor: "#AD6464",
     padding: 15,
     marginTop: 10,
+    width: "80%",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 11,
+    },
+    shadowOpacity: 0.57,
+    shadowRadius: 15.19,
+
+    elevation: 23,
   },
   buttonFont: {
     fontWeight: "bold",
+    textAlign: "center",
   },
 });
 export default Criteria;

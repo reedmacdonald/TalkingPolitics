@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { GameContext } from "../App";
+import BlueButton from "./buttons/BlueButton";
+import RedButton from "./buttons/RedButton";
 
 function Instructions(props) {
   const gameContext = React.useContext(GameContext);
@@ -19,12 +21,11 @@ function Instructions(props) {
         to decide. You can then end the game or switch moderators and continue
         with a new topic.
       </Text>
-      <TouchableOpacity
+
+      <RedButton
         onPress={() => props.navigation.navigate("Positions")}
-        style={styles.button}
-      >
-        <Text style={styles.buttonFont}>Start</Text>
-      </TouchableOpacity>
+        text={"Start"}
+      />
     </View>
   );
 }
@@ -32,22 +33,27 @@ function Instructions(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FAEBD7",
     alignItems: "center",
     justifyContent: "center",
   },
   bigText: {
     fontSize: 45,
+    textAlign: "center",
+    paddingHorizontal: 10,
+    fontFamily: "American Typewriter",
   },
   smallerText: {
     fontSize: 25,
     textAlign: "center",
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
+    fontFamily: "American Typewriter",
   },
   button: {
     backgroundColor: "red",
     padding: 15,
     marginTop: 10,
+    borderRadius: 20,
   },
   buttonFont: {
     fontWeight: "bold",
