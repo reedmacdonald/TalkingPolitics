@@ -21,8 +21,7 @@ function Criteria(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.bigText}>Criteria</Text>
-      <Text style={styles.smallerText}>{question}</Text>
+      <Text style={styles.bigText}>{question}</Text>
 
       <RedButton
         onPress={() => {
@@ -48,42 +47,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   bigText: {
-    fontSize: 45,
+    fontSize: 36,
     textAlign: "center",
     paddingHorizontal: 10,
     textShadowColor: "rgba(0, 0, 0, 0.75)",
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 2,
     fontFamily: "American Typewriter",
-  },
-  smallerText: {
-    fontSize: 25,
-    textAlign: "center",
-    paddingHorizontal: 10,
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 2,
-    fontFamily: "American Typewriter",
-  },
-  button: {
-    backgroundColor: "#AD6464",
-    padding: 15,
-    marginTop: 10,
-    width: "80%",
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 11,
-    },
-    shadowOpacity: 0.57,
-    shadowRadius: 15.19,
-
-    elevation: 23,
-  },
-  buttonFont: {
-    fontWeight: "bold",
-    textAlign: "center",
+    marginBottom: 80,
   },
 });
 export default Criteria;

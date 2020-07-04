@@ -49,7 +49,9 @@ function Positions(props) {
     console.log("getting things");
     getThings();
   }, []);
+
   React.useEffect(() => {
+    setAdditional("Loading Additional");
     console.log(gameContext.triggerNewCard, "<---triggerNewCard");
     if (gameContext.triggerNewCard !== 1) {
       console.log("triggering");
@@ -80,6 +82,7 @@ function Positions(props) {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <>
+          <Text style={[styles.bigText, {}]}>Positions</Text>
           <Animated.View
             style={[
               {
@@ -89,7 +92,6 @@ function Positions(props) {
               },
             ]}
           >
-            <Text style={[styles.bigText, {}]}>Positions</Text>
             <View style={styles.margins}>
               <Text style={[styles.smallerText, {}]}>Premise: </Text>
               <Text style={[styles.lastText, {}]}>{premise}</Text>
