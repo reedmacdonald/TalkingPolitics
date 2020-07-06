@@ -31,6 +31,7 @@ function Positions(props) {
     } else {
       results = await getCertainPrompts(gameContext.gameTopic);
     }
+    results = gameContext.actualTopic;
     let tired = [];
     results.forEach((doc) => {
       tired.push(doc.data());

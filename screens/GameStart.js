@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Picker } from "react-native";
 import { GameContext } from "../App";
 import BlueButton from "./buttons/BlueButton";
 import RedButton from "./buttons/RedButton";
+import { getPrompts2, getCertainPrompts } from "../helperFunctions";
 
 function GameStart(props) {
   const [selectPlayers, setSelectPlayers] = React.useState(2);
@@ -49,7 +50,15 @@ function GameStart(props) {
       </View>
 
       <BlueButton
-        onPress={() => props.navigation.navigate("Instructions")}
+        onPress={async () => {
+          props.navigation.navigate("Instructions");
+          if (gameContext.gameTopic == "All") {
+            results = await getPrompts2();
+          } else {
+            results = await getCertainPrompts(gameContext.gameTopic);
+          }
+          gameContext.setTopicThing(results);
+        }}
         text={"Start"}
       />
     </View>

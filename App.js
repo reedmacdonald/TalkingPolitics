@@ -25,12 +25,16 @@ export const GameContext = React.createContext();
 export default function App() {
   const [gameText, setGameText] = React.useState("Hello World");
   const [gameTopic, setGameTopic] = React.useState("All");
+  const [actualTopic, setActualTopic] = React.useState([]);
   const [gamePlayers, setGamePlayers] = React.useState(2);
   const [card, setCard] = React.useState({ WhoDrinks: ["hmm", "idk"] });
   const [deckLength, setDeckLength] = React.useState(10);
   const [cardStack, setCardStack] = React.useState([]);
   const [triggerNewCard, setTriggerNewCard] = React.useState(1);
 
+  const setTopicThing = (data) => {
+    setActualTopic(data);
+  };
   const getNewCard = () => {
     setTriggerNewCard(triggerNewCard + 1);
   };
@@ -69,6 +73,8 @@ export default function App() {
         addACard,
         triggerNewCard,
         getNewCard,
+        actualTopic,
+        setTopicThing,
       }}
     >
       <NavigationContainer>

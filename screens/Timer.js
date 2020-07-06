@@ -42,7 +42,7 @@ function Timer(props) {
         "Player Two Drinks",
         "Everyone Drinks",
       ];
-      let happyFourth = Math.floor(Math.random() * 11);
+      let happyFourth = Math.floor(Math.random() * 21);
       if (happyFourth == 3) {
         if (!whoDrinks) {
           let anotherOne = Math.floor(Math.random() * 3);
@@ -51,7 +51,7 @@ function Timer(props) {
             if (2 > 1) {
               setWhoDrinks("");
             }
-          }, 3000);
+          }, 5000);
         }
       }
 
