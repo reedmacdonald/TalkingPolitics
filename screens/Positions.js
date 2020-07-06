@@ -39,7 +39,12 @@ function Positions(props) {
 
     let randNum = Math.floor(Math.random() * tired.length);
     gameContext.setTheDeckLength(tired.length);
-    setAdditional(tired[randNum].Additional);
+    if (Array.isArray(tired[randNum].Additional)) {
+      anotherNum = Math.floor(Math.random() * tired[randNum].Additional.length);
+      setAdditional(tired[randNum].Additional[anotherNum]);
+    } else {
+      setAdditional(tired[randNum].Additional);
+    }
     setPlayerOne(tired[randNum].PlayerOne);
     setPlayerTwo(tired[randNum].PlayerTwo);
     setPremise(tired[randNum].Premise);
