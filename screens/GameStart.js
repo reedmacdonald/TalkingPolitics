@@ -51,7 +51,7 @@ function GameStart(props) {
 
       <BlueButton
         onPress={async () => {
-          props.navigation.navigate("Instructions");
+          props.navigation.navigate("Positions");
           if (gameContext.gameTopic == "All") {
             results = await getPrompts2();
           } else {

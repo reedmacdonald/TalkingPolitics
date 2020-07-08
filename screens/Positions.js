@@ -22,25 +22,35 @@ function Positions(props) {
   const [playerTwo, setPlayerTwo] = React.useState("LoadingPlayerTwo");
   const [premise, setPremise] = React.useState("LoadingPremise");
   React.useEffect(() => {
+    console.log("getting the dumb things");
     getThings();
   }, []);
   let getThings = async () => {
     let results;
-    if (gameContext.gameTopic == "All") {
-      results = await getPrompts2();
-    } else {
-      results = await getCertainPrompts(gameContext.gameTopic);
-    }
     results = gameContext.actualTopic;
+    if (results.length < 1) {
+      console.log("making call");
+      if (gameContext.gameTopic == "All") {
+        results = await getPrompts2();
+      } else {
+        results = await getCertainPrompts(gameContext.gameTopic);
+      }
+    }
+    //results = gameContext.actualTopic;
+
     let tired = [];
+
     results.forEach((doc) => {
       tired.push(doc.data());
     });
 
     let randNum = Math.floor(Math.random() * tired.length);
     gameContext.setTheDeckLength(tired.length);
+
     if (Array.isArray(tired[randNum].Additional)) {
-      anotherNum = Math.floor(Math.random() * tired[randNum].Additional.length);
+      let anotherNum = Math.floor(
+        Math.random() * tired[randNum].Additional.length
+      );
       setAdditional(tired[randNum].Additional[anotherNum]);
     } else {
       setAdditional(tired[randNum].Additional);
@@ -48,13 +58,10 @@ function Positions(props) {
     setPlayerOne(tired[randNum].PlayerOne);
     setPlayerTwo(tired[randNum].PlayerTwo);
     setPremise(tired[randNum].Premise);
+    console.log("here4");
     gameContext.setTheCard(tired[randNum]);
     gameContext.addACard(tired[randNum]);
   };
-  React.useEffect(() => {
-    console.log("getting things");
-    getThings();
-  }, []);
 
   React.useEffect(() => {
     setAdditional("Loading Additional");
@@ -67,7 +74,6 @@ function Positions(props) {
   const fadeAnim = React.useRef(new Animated.Value(1)).current;
 
   const fadeIn = () => {
-    // Will change fadeAnim value to 1 in 5 seconds
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 2000,
@@ -75,7 +81,6 @@ function Positions(props) {
   };
 
   const fadeOut = () => {
-    // Will change fadeAnim value to 0 in 5 seconds
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 2000,

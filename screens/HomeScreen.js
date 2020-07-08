@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Image,
+} from "react-native";
 import { GameContext } from "../App";
 import { getPrompts } from "../helperFunctions";
 import BlueButton from "./buttons/BlueButton";
@@ -10,13 +17,17 @@ function HomeScreen(props) {
   const gameContext = React.useContext(GameContext);
   return (
     <View style={styles.container}>
+      <Image
+        style={{ height: 300, width: 300 }}
+        source={require("../assets/splash.png")}
+      ></Image>
       <Text style={styles.bigText}>Talking Politics</Text>
       <Text style={styles.smallerText}>
         The Drinking Game of Wayward Political Debate
       </Text>
 
       <RedButton
-        onPress={() => props.navigation.navigate("GameStart")}
+        onPress={() => props.navigation.navigate("Instructions")}
         text={"Start"}
       />
     </View>

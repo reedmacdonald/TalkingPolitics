@@ -4,11 +4,11 @@
     "slug": "talkingPoliticsThird",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/splash.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#faebd7"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,6 +21,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This is Talking Politics: The Drinking Game of Wayward Political Debate. The goal is to make discussing politics fun by creating an opportunity for free-flowing debate filled with laughs, civic awareness, and beer!"
   }
 }

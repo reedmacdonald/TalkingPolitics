@@ -11,19 +11,30 @@ function Instructions(props) {
     <View style={styles.container}>
       <Text style={styles.bigText}>Instructions</Text>
       <Text style={styles.smallerText}>
-        Choose a topic and a number of players and let one person begin as a
-        moderator. The moderator will read the debate premise, the positions
-        each player will have to take, and any extra criteria for the debate.
-        When he clicks start, debate participants will have 90 seconds to
-        debate, but the moderator can pause the debate or add more time. When
-        the time runs out, the moderator will read who has to drink. If this is
-        arbitrary (e.g. "Person who won the debate") it is then up the moderator
-        to decide. You can then end the game or switch moderators and continue
-        with a new topic.
+        1. Choose two players and a moderator. If this is a two person game, one
+        player can also be the moderator
       </Text>
+      <Text style={styles.smallerText}>
+        2. Players will be given the question, their positions, and additional
+        criteria
+      </Text>
+      <Text style={styles.smallerText}>
+        3. Players have 90 seconds to debate. Moderator can moderate. Players
+        will be prompted to drink randomly
+      </Text>
+      <Text style={styles.smallerText}>
+        4. At the end of the debate, the another player(s) will be prompted to
+        drink based on the results of the debate. Moderator can settle disputes
+        here.
+      </Text>
+      <Text style={styles.smallerText}>
+        5. Moderator chooses the winner of the debate, who becomes the next
+        moderator.
+      </Text>
+      <Text style={styles.smallerText}>6. Have fun!</Text>
 
       <RedButton
-        onPress={() => props.navigation.navigate("Positions")}
+        onPress={() => props.navigation.navigate("GameStart")}
         text={"Start"}
       />
     </View>
@@ -48,6 +59,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 10,
     fontFamily: "American Typewriter",
+    paddingVertical: 3,
   },
   button: {
     backgroundColor: "red",

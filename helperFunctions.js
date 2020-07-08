@@ -13,7 +13,7 @@ export const getPrompts = (callback) => {
         console.log(newArray, "<---newArray");
       });
       console.log("hello");
-    });
+    },(err)=>{console.log(err,'<---err')});
   console.log("here");
   return newArray;
 };

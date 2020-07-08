@@ -24,15 +24,18 @@ function Criteria(props) {
       <Text style={styles.bigText}>{question}</Text>
 
       <RedButton
-        onPress={() => {
+        onPress={async () => {
           props.navigation.navigate("Positions");
-          gameContext.getNewCard();
+          await gameContext.getNewCard();
         }}
         text={"Continue"}
       />
 
       <BlueButton
-        onPress={() => props.navigation.navigate("Home")}
+        onPress={() => {
+          gameContext.setTopicThing([]);
+          props.navigation.navigate("Home");
+        }}
         text={"End Game"}
       />
     </View>
