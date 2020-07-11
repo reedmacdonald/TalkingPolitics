@@ -45,7 +45,6 @@ function GameStart(props) {
           <Picker.Item label="USA" value="USA" />
           <Picker.Item label="International" value="International" />
           <Picker.Item label="Political Theory" value="Political Theory" />
-          <Picker.Item label="Small Ball" value="Small Ball" />
         </Picker>
       </View>
 

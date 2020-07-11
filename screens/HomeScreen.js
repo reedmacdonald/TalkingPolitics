@@ -12,11 +12,20 @@ import { GameContext } from "../App";
 import { getPrompts } from "../helperFunctions";
 import BlueButton from "./buttons/BlueButton";
 import RedButton from "./buttons/RedButton";
+import Icon from "react-native-vector-icons/AntDesign";
+import Close from "./Vectors/Close";
 
 function HomeScreen(props) {
   const gameContext = React.useContext(GameContext);
   return (
     <View style={styles.container}>
+      <Close
+        text="Close"
+        onPress={() => {
+          console.log("here");
+        }}
+      />
+
       <Image
         style={{ height: 300, width: 300 }}
         source={require("../assets/splash.png")}
@@ -25,7 +34,6 @@ function HomeScreen(props) {
       <Text style={styles.smallerText}>
         The Drinking Game of Wayward Political Debate
       </Text>
-
       <RedButton
         onPress={() => props.navigation.navigate("Instructions")}
         text={"Start"}
