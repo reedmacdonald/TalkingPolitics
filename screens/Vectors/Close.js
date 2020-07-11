@@ -27,11 +27,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    bottom: 10,
-    left: 10,
+    bottom: 20,
+    left: 20,
   },
   text: {
     fontFamily: "American Typewriter",
+    color: "#3A3A6B",
   },
 });
 export default Close;

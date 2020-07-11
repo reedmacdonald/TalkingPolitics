@@ -11,6 +11,7 @@ import {
 import { GameContext } from "../App";
 import BlueButton from "./buttons/BlueButton";
 import RedButton from "./buttons/RedButton";
+import Close from "./Vectors/Close";
 
 function Timer(props) {
   const [timeOne, setTimeOne] = React.useState(90);
@@ -63,6 +64,12 @@ function Timer(props) {
 
   return (
     <View style={styles.container}>
+      <Close
+        text="End"
+        onPress={() => {
+          setTimeOne(0);
+        }}
+      />
       <BlueButton
         onPress={() => {
           clearTimeout(otherNumber);

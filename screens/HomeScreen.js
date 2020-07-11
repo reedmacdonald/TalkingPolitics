@@ -19,13 +19,6 @@ function HomeScreen(props) {
   const gameContext = React.useContext(GameContext);
   return (
     <View style={styles.container}>
-      <Close
-        text="Close"
-        onPress={() => {
-          console.log("here");
-        }}
-      />
-
       <Image
         style={{ height: 300, width: 300 }}
         source={require("../assets/splash.png")}
