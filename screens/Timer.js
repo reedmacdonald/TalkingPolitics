@@ -43,7 +43,7 @@ function Timer(props) {
         "Player Two Drinks",
         "Everyone Drinks",
       ];
-      let happyFourth = Math.floor(Math.random() * 21);
+      let happyFourth = Math.floor(Math.random() * 30);
       if (happyFourth == 3) {
         if (!whoDrinks) {
           let anotherOne = Math.floor(Math.random() * 3);
