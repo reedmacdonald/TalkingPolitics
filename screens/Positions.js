@@ -22,14 +22,12 @@ function Positions(props) {
   const [playerTwo, setPlayerTwo] = React.useState("LoadingPlayerTwo");
   const [premise, setPremise] = React.useState("LoadingPremise");
   React.useEffect(() => {
-    console.log("getting the dumb things");
     getThings();
   }, []);
   let getThings = async () => {
     let results;
     results = gameContext.actualTopic;
     if (results.length < 1) {
-      console.log("making call");
       if (gameContext.gameTopic == "All") {
         results = await getPrompts2();
       } else {
@@ -43,6 +41,7 @@ function Positions(props) {
     results.forEach((doc) => {
       tired.push(doc.data());
     });
+    console.log(tired.length, "<----tired");
 
     let randNum = Math.floor(Math.random() * tired.length);
     gameContext.setTheDeckLength(tired.length);
@@ -58,16 +57,14 @@ function Positions(props) {
     setPlayerOne(tired[randNum].PlayerOne);
     setPlayerTwo(tired[randNum].PlayerTwo);
     setPremise(tired[randNum].Premise);
-    console.log("here4");
     gameContext.setTheCard(tired[randNum]);
     gameContext.addACard(tired[randNum]);
   };
 
   React.useEffect(() => {
     setAdditional("Loading Additional");
-    console.log(gameContext.triggerNewCard, "<---triggerNewCard");
+
     if (gameContext.triggerNewCard !== 1) {
-      console.log("triggering");
       getThings();
     }
   }, [gameContext.triggerNewCard]);
@@ -77,6 +74,7 @@ function Positions(props) {
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 2000,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -84,6 +82,7 @@ function Positions(props) {
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 2000,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
     fontFamily: "American Typewriter",
   },
   smallerText: {
-    fontSize: 25,
+    fontSize: 32,
     textAlign: "center",
     paddingHorizontal: 10,
     fontFamily: "American Typewriter",

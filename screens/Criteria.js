@@ -34,6 +34,7 @@ function Criteria(props) {
       <BlueButton
         onPress={() => {
           gameContext.setTopicThing([]);
+          gameContext.setTheTopic("All");
           props.navigation.navigate("Home");
         }}
         text={"End Game"}

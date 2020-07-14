@@ -21,6 +21,7 @@ if (!global.atob) {
 
 const Stack = createStackNavigator();
 export const GameContext = React.createContext();
+console.disableYellowBox = true;
 
 export default function App() {
   const [gameText, setGameText] = React.useState("Hello World");
@@ -54,9 +55,7 @@ export default function App() {
     let newStack = [];
     setCardStack(newStack);
   };
-  React.useState(() => {
-    console.log(cardStack, "<---cardStack");
-  }, [cardStack]);
+
   return (
     <GameContext.Provider
       value={{

@@ -49,14 +49,11 @@ function Timer(props) {
           let anotherOne = Math.floor(Math.random() * 3);
           setWhoDrinks(personDrinks[anotherOne]);
           setTimeout(() => {
-            if (2 > 1) {
-              setWhoDrinks("");
-            }
+            setWhoDrinks("");
           }, 5000);
         }
       }
-
-      if (2 > 1) {
+      if (!isPaused) {
         startTime(sumthin);
       }
     }
@@ -73,7 +70,7 @@ function Timer(props) {
       <BlueButton
         onPress={() => {
           clearTimeout(otherNumber);
-          setIsPaused(false);
+          //setIsPaused(false);
           setTimeOne(timeOne + 15);
         }}
         text={"Add Time"}

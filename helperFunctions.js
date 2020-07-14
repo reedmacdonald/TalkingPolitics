@@ -6,15 +6,18 @@ export const getPrompts = (callback) => {
   let newArray = "hi";
   db.collection("prompts")
     .get()
-    .then(function (querySnapshot) {
-      newArray = [];
-      querySnapshot.forEach(function (doc) {
-        newArray.push(doc.data());
-        console.log(newArray, "<---newArray");
-      });
-      console.log("hello");
-    },(err)=>{console.log(err,'<---err')});
-  console.log("here");
+    .then(
+      function (querySnapshot) {
+        newArray = [];
+        querySnapshot.forEach(function (doc) {
+          newArray.push(doc.data());
+        });
+      },
+      (err) => {
+        console.log(err, "<---err");
+      }
+    );
+
   return newArray;
 };
 
