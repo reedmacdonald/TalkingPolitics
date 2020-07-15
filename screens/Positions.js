@@ -11,7 +11,12 @@ import {
   SafeAreaView,
 } from "react-native";
 import { GameContext } from "../App";
-import { getPrompts, getPrompts2, getCertainPrompts } from "../helperFunctions";
+import {
+  getPrompts,
+  getPrompts2,
+  getCertainPrompts,
+  shuffle,
+} from "../helperFunctions";
 import BlueButton from "./buttons/BlueButton";
 import RedButton from "./buttons/RedButton";
 
@@ -27,7 +32,9 @@ function Positions(props) {
   let getThings = async () => {
     let results;
     results = gameContext.actualTopic;
+    let firstGo = false;
     if (results.length < 1) {
+      firstGo = true;
       if (gameContext.gameTopic == "All") {
         results = await getPrompts2();
       } else {
@@ -42,23 +49,34 @@ function Positions(props) {
       tired.push(doc.data());
     });
     console.log(tired.length, "<----tired");
+    console.log(gameContext.index, "<---gameContext");
+    if (firstGo) {
+      shuffle(tired);
+      firstGo = false;
+    }
 
     let randNum = Math.floor(Math.random() * tired.length);
     gameContext.setTheDeckLength(tired.length);
+    gameContext.index;
 
-    if (Array.isArray(tired[randNum].Additional)) {
+    if (Array.isArray(tired[gameContext.index].Additional)) {
       let anotherNum = Math.floor(
-        Math.random() * tired[randNum].Additional.length
+        Math.random() * tired[gameContext.index].Additional.length
       );
-      setAdditional(tired[randNum].Additional[anotherNum]);
+      setAdditional(tired[gameContext.index].Additional[anotherNum]);
     } else {
-      setAdditional(tired[randNum].Additional);
+      setAdditional(tired[gameContext.index].Additional);
     }
-    setPlayerOne(tired[randNum].PlayerOne);
-    setPlayerTwo(tired[randNum].PlayerTwo);
-    setPremise(tired[randNum].Premise);
-    gameContext.setTheCard(tired[randNum]);
-    gameContext.addACard(tired[randNum]);
+    setPlayerOne(tired[gameContext.index].PlayerOne);
+    setPlayerTwo(tired[gameContext.index].PlayerTwo);
+    setPremise(tired[gameContext.index].Premise);
+    gameContext.setTheCard(tired[gameContext.index]);
+    gameContext.addACard(tired[gameContext.index]);
+    if (gameContext.index != tired.length - 1) {
+      gameContext.setIndex(gameContext.index + 1);
+    } else {
+      gameContext.setIndex(0);
+    }
   };
 
   React.useEffect(() => {

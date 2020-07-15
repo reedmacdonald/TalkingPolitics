@@ -32,6 +32,7 @@ export default function App() {
   const [deckLength, setDeckLength] = React.useState(10);
   const [cardStack, setCardStack] = React.useState([]);
   const [triggerNewCard, setTriggerNewCard] = React.useState(1);
+  const [index, setIndex] = React.useState(0);
 
   const setTopicThing = (data) => {
     setActualTopic(data);
@@ -74,6 +75,8 @@ export default function App() {
         getNewCard,
         actualTopic,
         setTopicThing,
+        index,
+        setIndex,
       }}
     >
       <NavigationContainer>
