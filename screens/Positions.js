@@ -48,8 +48,7 @@ function Positions(props) {
     results.forEach((doc) => {
       tired.push(doc.data());
     });
-    console.log(tired.length, "<----tired");
-    console.log(gameContext.index, "<---gameContext");
+
     if (firstGo) {
       shuffle(tired);
       firstGo = false;

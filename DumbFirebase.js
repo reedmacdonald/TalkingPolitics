@@ -1,9 +1,10 @@
 import "react";
 import * as firebase from "firebase";
 import "firebase/firestore";
+import { KEY } from "./personal";
 
 const config = {
-  apiKey: "AIzaSyAc327a0Aj8IEyW7cjJy-OWj1x-ctsVTOM",
+  apiKey: KEY,
   authDomain: "talking-politics.firebaseapp.com",
   databaseURL: "https://talking-politics.firebaseio.com",
   projectId: "talking-politics",
